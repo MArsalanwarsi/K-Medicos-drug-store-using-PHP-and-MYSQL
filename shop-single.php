@@ -42,6 +42,8 @@ include "doctype.php";
                 <input type="hidden" name="p_name" value="<?php echo $data['brand_name'] ?>">
                 <input type="hidden" name="p_price" value="<?php echo $data['price'] ?>">
                 <input type="hidden" name="p_img" value="<?php echo $data['img'] ?>">
+                <input type="hidden" name="p_adr" value="<?php echo $data['adverce_drug_reaction'] ?>">
+                <input type="hidden" name="p_generic" value="<?php echo $data['generic_name'] ?>">               
                 <div class="mb-5">
                   <div class="input-group mb-3" style="max-width: 220px;">
                     <div class="input-group-prepend">

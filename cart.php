@@ -20,6 +20,30 @@ include "doctype.php";
       </div>
     </div>
     <?php
+    function adr()
+    {
+      $ses = $_SESSION['cart'];
+      foreach ($ses as $data) {
+        $p_generic = $data['p_generic'];
+        foreach ($ses as $data2) {
+          $p_adr = $data2['p_adr'];
+          $adr_exploded = explode(",", $p_adr);
+          foreach ($adr_exploded as $adr) {
+            echo $adr . "<br>";
+            if ($adr == $p_generic) {
+              ?>
+              <script>
+                alert('Drug shows adverse effects when taken togather please cosult doctor');
+                location.assign('cart.php');
+              </script>
+              <?php
+            }
+          }
+
+        }
+
+      }
+    }
     if (isset($_POST['addCart'])) {
       if (isset($_SESSION['cart'])) {
         $myitem = array_column($_SESSION['cart'], 'p_id');
@@ -35,11 +59,23 @@ include "doctype.php";
           $p_price = $_POST['p_price'];
           $p_quantity = $_POST['p_quantity'];
           $p_img = $_POST['p_img'];
-          $_SESSION['cart'][$count] = array('p_id' => $p_id, 'p_name' => $p_name, 'p_price' => $p_price, 'p_quantity' => $p_quantity, 'p_img' => $p_img);
+          $p_adr = $_POST['p_adr'];
+          $p_generic = $_POST['p_generic'];
+          $_SESSION['cart'][$count] = array(
+            'p_id' => $p_id,
+            'p_name' => $p_name,
+            'p_price' => $p_price,
+            'p_quantity' => $p_quantity,
+            'p_img' => $p_img,
+            'p_adr' => $p_adr,
+            'p_generic' => $p_generic
+          );
+          adr();
           echo "<script>
 					alert('Product Added');
 					location.assign('index.php');
 				</script>";
+
         }
       } else {
         $p_id = $_POST['p_id'];
@@ -47,11 +83,23 @@ include "doctype.php";
         $p_price = $_POST['p_price'];
         $p_quantity = $_POST['p_quantity'];
         $p_img = $_POST['p_img'];
-        $_SESSION['cart'][0] = array('p_id' => $p_id, 'p_name' => $p_name, 'p_price' => $p_price, 'p_quantity' => $p_quantity, 'p_img' => $p_img);
+        $p_adr = $_POST['p_adr'];
+        $p_generic = $_POST['p_generic'];
+        $_SESSION['cart'][0] = array(
+          'p_id' => $p_id,
+          'p_name' => $p_name,
+          'p_price' => $p_price,
+          'p_quantity' => $p_quantity,
+          'p_img' => $p_img,
+          'p_adr' => $p_adr,
+          'p_generic' => $p_generic
+        );
+        adr();
         echo "<script>
-					alert('Product Added');
+					alert('Product Added'); 
 					location.assign('index.php');
 				</script>";
+
       }
 
     }
@@ -210,5 +258,8 @@ include "doctype.php";
   <?php include "footer.php"; ?>
   </div>
 </body>
+<?php
+
+?>
 
 </html>
