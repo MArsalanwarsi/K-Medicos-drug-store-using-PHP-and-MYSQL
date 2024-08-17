@@ -9,41 +9,17 @@ include "doctype.php";
     <script>
       document.getElementById("Home").classList.remove("active");
     </script>
-    <div class="bg-light py-3">
+    <div class="bg-light">
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-0">
             <a href="index.html">Home</a> <span class="mx-2 mb-0">/</span>
-            <strong class="text-black">Cart</strong>
+            <strong class="text-dark">Cart</strong>
           </div>
         </div>
       </div>
     </div>
     <?php
-    function adr()
-    {
-      $ses = $_SESSION['cart'];
-      foreach ($ses as $data) {
-        $p_generic = $data['p_generic'];
-        foreach ($ses as $data2) {
-          $p_adr = $data2['p_adr'];
-          $adr_exploded = explode(",", $p_adr);
-          foreach ($adr_exploded as $adr) {
-            echo $adr . "<br>";
-            if ($adr == $p_generic) {
-              ?>
-              <script>
-                alert('Drug shows adverse effects when taken togather please cosult doctor');
-                location.assign('cart.php');
-              </script>
-              <?php
-            }
-          }
-
-        }
-
-      }
-    }
     if (isset($_POST['addCart'])) {
       if (isset($_SESSION['cart'])) {
         $myitem = array_column($_SESSION['cart'], 'p_id');
@@ -70,7 +46,7 @@ include "doctype.php";
             'p_adr' => $p_adr,
             'p_generic' => $p_generic
           );
-          adr();
+         
           echo "<script>
 					alert('Product Added');
 					location.assign('index.php');
@@ -94,7 +70,7 @@ include "doctype.php";
           'p_adr' => $p_adr,
           'p_generic' => $p_generic
         );
-        adr();
+       
         echo "<script>
 					alert('Product Added'); 
 					location.assign('index.php');
@@ -126,8 +102,13 @@ include "doctype.php";
     }
     ?>
     <div class="site-section">
-      <div class="container">
+      
+      <div class="container p-5">
         <div class="row mb-5">
+          <div class="col-md-12">
+             <div class="alert_doctor">
+       </div>
+          </div>
           <form class="col-md-12" method="post">
             <div class="site-blocks-table">
               <table class="table table-bordered">
@@ -259,7 +240,32 @@ include "doctype.php";
   </div>
 </body>
 <?php
+  function adr()
+    {
+      $ses = $_SESSION['cart'];
+      foreach ($ses as $data) {
+        $p_generic = $data['p_generic'];
+        foreach ($ses as $data2) {
+          $p_adr = $data2['p_adr'];
+          $adr_exploded = explode(",", $p_adr);
+          foreach ($adr_exploded as $adr) {
+            if ($adr == $p_generic) {
+             ?>
+             <script>
+             $(document).ready(function(){
+              $(".alert_doctor").html("<marquee class='bg-danger text-light'>These medicines show side-Effects when taken together Please consult doctor</marquee>")
+             })
+             </script>
+             <?php
+            }
+        
+          }
 
+        }
+
+      }
+    }
+    adr();
 ?>
 
 </html>
