@@ -7,6 +7,9 @@ include "doctype.php";
 <body>
   <div class="site-wrap">
     <?php include "header.php"; ?>
+    <script>
+  document.getElementById("Home").classList.remove("active");
+</script>
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
@@ -21,7 +24,7 @@ include "doctype.php";
       <div class="container">
         <div class="row mb-5">
         </div>
-        <div class="row">
+        <div class="row align-items-center py-4">
           <div class="col-lg-6 col-md-6 col-lg-6 mb-5 mb-md-0">
             <?php
             $user_id = $_SESSION['id'];
@@ -68,13 +71,13 @@ include "doctype.php";
           <div class="col-md-6">
             <div class="row mb-5">
               <div class="col-lg-12 col-md-12 col-sm-12">
-                <h2 class="h3 mb-3 text-black">Your Order</h2>
+                <h2 class="h3 mb-3 text-black">Place Order</h2>
                 <div class="p-3 p-lg-5 border">
                   <div class="border mb-3 p-3">
                     <input class="" type="radio" name="cod" value="cash on delivery" checked> CASH ON DELIVERY
                     </h3>
                     <div class="form-group">
-                      <button type="submit" name="checkout" class="btn btn-primary btn-lg btn-block">Place
+                      <button type="submit" name="checkout" class="btn btn-outline-success btn-lg btn-block">Place
                         Order</button>
                     </div>
                   </div>
@@ -91,7 +94,7 @@ include "doctype.php";
             <div class="col-lg-6 mb-5 mb-lg-0">
               <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_1.jpg');">
                 <div class="banner-1-inner align-self-center">
-                  <h2>Pharma Products</h2>
+                  <h2>K-Medicos</h2>
                   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio
                     voluptatem.
                   </p>

@@ -8,6 +8,9 @@ include "doctype.php";
     <?php
     include "header.php";
     ?>
+    <script>
+  document.getElementById("Home").classList.remove("active");
+</script>
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
@@ -28,7 +31,7 @@ include "doctype.php";
 
           $data = mysqli_fetch_assoc($selectDataById);
           ?>
-          <div class="row">
+          <div class="row align-items-center">
             <div class="col-md-5 mr-auto">
               <div class="border text-center">
                 <img src="AdminPanel/<?php echo $data['img'] ?>" alt="Image" class="img-fluid p-0">
@@ -36,7 +39,7 @@ include "doctype.php";
             </div>
             <div class="col-md-6">
               <h2 class="text-black"><?php echo $data['brand_name'] ?>, <?php echo $data['strength'] ?></h2>
-              <p> <strong class="text-primary h4">Rs <?php echo $data['price'] ?></strong></p>
+              <p> <strong class="text-success h4">Rs <?php echo $data['price'] ?></strong></p>
               <form action="cart.php" method="POST">
                 <input type="hidden" name="p_id" value="<?php echo $data['id'] ?>">
                 <input type="hidden" name="p_name" value="<?php echo $data['brand_name'] ?>">
@@ -48,16 +51,16 @@ include "doctype.php";
                 <div class="mb-5">
                   <div class="input-group mb-3" style="max-width: 220px;">
                     <div class="input-group-prepend">
-                      <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                      <button class="btn btn-outline-success js-btn-minus" type="button">&minus;</button>
                     </div>
                     <input type="text" name="p_quantity" class="form-control text-center" value="1" placeholder=""
                       aria-label="Example text with button addon" aria-describedby="button-addon1">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                      <button class="btn btn-outline-success js-btn-plus" type="button">&plus;</button>
                     </div>
                   </div>
                 </div>
-                <p><button type="submit" name="addCart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add
+                <p><button type="submit" name="addCart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-outline-success">Add
                     To Cart</button></p>
               </form>
             </div>
@@ -66,7 +69,7 @@ include "doctype.php";
             <div class="mt-5">
               <ul class="nav nav-pills mb-3 custom-pill" id="pills-tab" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                  <a class="nav-link active " id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
                     aria-controls="pills-home" aria-selected="true">Ordering Information</a>
                 </li>
                 <li class="nav-item">
