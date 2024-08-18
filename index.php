@@ -14,9 +14,9 @@ include "doctype.php";
             <div class="site-block-cover-content text-center">
               <h2 class="sub-title animate__animated animate__flash animate__infinite	infinite animate__slow	10s">Your
                 Trusted Health Partner, Anytime, Anywhere.</h2>
-              <h1>Welcome To K-Medico</h1>
+              <h1>Welcome To <br> K-Medico</h1>
               <p>
-                <a href="shop.php" class="btn btn-primary px-5 py-3">Shop Now</a>
+                <a href="shop.php" class="btn btn-success px-5 py-3">Shop Now</a>
               </p>
             </div>
           </div>
@@ -39,9 +39,10 @@ include "doctype.php";
             ?>
             <div class="col-md-6 col-lg-4 mb-4 mb-lg-0 p-5 shadow">
               <div class="banner-wrap h-100"
-                style="background-image: url('AdminPanel/<?php echo $data['category_image'] ?>');background-repeat: no-repeat;background-size: cover;">
+                style="background-image: url('AdminPanel/<?php echo $data['category_image'] ?>');background-repeat: no-repeat;background-size: cover; max-height:100px;">
                 <a href="categoryWiseProduct.php?category=<?php echo $data['category_name']; ?>" class="h-100">
-                  <h5 class="text-danger fw-bold"><?php echo $data['category_name'] ?></h5>
+                  <h5 class="text-success" style="font-weight:900;background-color:white;opacity:70%;">
+                    <?php echo $data['category_name'] ?></h5>
                 </a>
               </div>
             </div>
@@ -77,10 +78,13 @@ include "doctype.php";
                   <img class="card-img-top " style='width:250px;height:200px' src="AdminPanel/<?php echo $data['img']; ?>"
                     alt="Card image cap"></a>
                 <div class="card-body">
+                  <div class="d-flex">
                   <h5 class="card-title"><?php echo $data['brand_name'] ?></h5>
-                  <p class="price">Rs <?php echo $data['price'] ?></p>
-                  <a href="shop-single.php?id=<?php echo $data['id'] ?>" class="btn btn-primary">Detail</a>
-                  <span class="text-danger ms-5">
+                  <p class="price" style="margin-left:auto;">Rs <?php echo $data['price'] ?></p>
+                  </div>
+                  <div class="d-flex">
+                  <a href="shop-single.php?id=<?php echo $data['id'] ?>" class="btn btn-outline-success">Detail</a>
+                  <span class="text-danger" style="margin-left:auto;">
                     <?php
                     if ($data['quatity'] > 0) {
                       echo "In Stock";
@@ -89,6 +93,7 @@ include "doctype.php";
                     }
                     ?>
                   </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -98,7 +103,7 @@ include "doctype.php";
         </div>
         <div class="row mt-5">
           <div class="col-12 text-center">
-            <a href="shop.php" class="btn btn-primary px-4 py-3">View All Products</a>
+            <a href="shop.php" class="btn btn-outline-success px-4 py-3">View All Products</a>
           </div>
         </div>
       </div>
@@ -123,10 +128,13 @@ include "doctype.php";
                         style='width:250px;height:200px' src="AdminPanel/<?php echo $data['img']; ?>"
                         alt="Card image cap"></a>
                     <div class="card-body">
-                      <h5 class="card-title"><?php echo $data['brand_name'] ?></h5>
-                      <p class="price">Rs <?php echo $data['price'] ?></p>
-                      <a href="shop-single.php?id=<?php echo $data['id'] ?>" class="btn btn-primary">Detail</a>
-                      <span class="text-danger ms-5">
+                      <div class="d-flex">
+                        <h5 class="card-title"><?php echo $data['brand_name'] ?></h5>
+                        <p class="price" style="margin-left:auto;">Rs <?php echo $data['price'] ?></p>
+                      </div>
+                      <div class="d-flex">
+                      <a href="shop-single.php?id=<?php echo $data['id'] ?>" class="btn btn-outline-success">Detail</a>
+                      <span class="text-danger" style="margin-left:auto;">
                         <?php
                         if ($data['quatity'] > 0) {
                           echo "In Stock";
@@ -135,6 +143,7 @@ include "doctype.php";
                         }
                         ?>
                       </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -146,7 +155,7 @@ include "doctype.php";
         </div>
       </div>
     </div>
-    <div class="site-section bg-secondary bg-image" style="background-image: url('images/bg_2.jpg');">
+    <div class="site-section bg-image" style="background-image: url('images/bg_2.jpg');background-color:#28a745">
       <div class="container">
         <div class="row align-items-stretch">
           <div class="col-lg-6 mb-5 mb-lg-0">

@@ -37,6 +37,7 @@ include "doctype.php";
           $p_img = $_POST['p_img'];
           $p_adr = $_POST['p_adr'];
           $p_generic = $_POST['p_generic'];
+          $p_priscription = $_POST['p_priscription'];
           $_SESSION['cart'][$count] = array(
             'p_id' => $p_id,
             'p_name' => $p_name,
@@ -44,9 +45,10 @@ include "doctype.php";
             'p_quantity' => $p_quantity,
             'p_img' => $p_img,
             'p_adr' => $p_adr,
-            'p_generic' => $p_generic
+            'p_generic' => $p_generic,
+            'p_priscription' => $p_priscription
           );
-         
+
           echo "<script>
 					alert('Product Added');
 					location.assign('index.php');
@@ -61,6 +63,7 @@ include "doctype.php";
         $p_img = $_POST['p_img'];
         $p_adr = $_POST['p_adr'];
         $p_generic = $_POST['p_generic'];
+        $p_priscription = $_POST['p_priscription'];
         $_SESSION['cart'][0] = array(
           'p_id' => $p_id,
           'p_name' => $p_name,
@@ -68,9 +71,10 @@ include "doctype.php";
           'p_quantity' => $p_quantity,
           'p_img' => $p_img,
           'p_adr' => $p_adr,
-          'p_generic' => $p_generic
+          'p_generic' => $p_generic,
+          'p_priscription' => $p_priscription
         );
-       
+
         echo "<script>
 					alert('Product Added'); 
 					location.assign('index.php');
@@ -102,12 +106,12 @@ include "doctype.php";
     }
     ?>
     <div class="site-section">
-      
+
       <div class="container p-5">
         <div class="row mb-5">
           <div class="col-md-12">
-             <div class="alert_doctor">
-       </div>
+            <div class="alert_doctor">
+            </div>
           </div>
           <form class="col-md-12" method="post">
             <div class="site-blocks-table">
@@ -145,7 +149,7 @@ include "doctype.php";
                 </div>
                 </td>
                 <td>Rs <?php echo $totalPrice; ?></td>
-                <td><a href="?remove=<?php echo $value['p_id'] ?>" class="btn btn-primary height-auto btn-sm">X</a></td>
+                <td><a href="?remove=<?php echo $value['p_id'] ?>" class="btn btn-danger height-auto btn-sm">X</a></td>
                 </tr>
                 <?php
                     }
@@ -192,13 +196,13 @@ include "doctype.php";
                   <?php
                   if (isset($_SESSION['name'])) {
                     ?>
-                    <a href="checkout.php" class="btn btn-primary btn-lg btn-block">
+                    <a href="checkout.php" class="btn btn-success btn-lg btn-block">
                       Proceed To Checkout
                     </a>
                     <?php
                   } else {
                     ?>
-                    <a href="" data-toggle="modal" data-target="#loginModel" class="btn btn-primary btn-lg btn-block">
+                    <a href="" data-toggle="modal" data-target="#loginModel" class="btn btn-success btn-lg btn-block">
                       Login
                     </a>
                     <?php
@@ -218,7 +222,7 @@ include "doctype.php";
         <div class="col-lg-6 mb-5 mb-lg-0">
           <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_1.jpg');">
             <div class="banner-1-inner align-self-center">
-              <h2>Pharma Products</h2>
+              <h2>K-Medicos</h2>
               <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
               </p>
             </div>
@@ -240,32 +244,38 @@ include "doctype.php";
   </div>
 </body>
 <?php
-  function adr()
-    {
-      $ses = $_SESSION['cart'];
-      foreach ($ses as $data) {
-        $p_generic = $data['p_generic'];
-        foreach ($ses as $data2) {
-          $p_adr = $data2['p_adr'];
-          $adr_exploded = explode(",", $p_adr);
-          foreach ($adr_exploded as $adr) {
-            if ($adr == $p_generic) {
-             ?>
-             <script>
-             $(document).ready(function(){
+function adr()
+{
+  $ses = $_SESSION['cart'];
+  foreach ($ses as $data) {
+    $p_generic = $data['p_generic'];
+    foreach ($ses as $data2) {
+      $p_adr = $data2['p_adr'];
+      $adr_exploded = explode(",", $p_adr);
+      foreach ($adr_exploded as $adr) {
+        if ($adr == $p_generic) {
+          ?>
+          <script>
+            $(document).ready(function () {
               $(".alert_doctor").html("<marquee class='bg-danger text-light'>These medicines show side-Effects when taken together Please consult doctor</marquee>")
-             })
-             </script>
-             <?php
-            }
-        
-          }
-
+            })
+          </script>
+          <?php
         }
 
       }
+
     }
+
+  }
+}
+if (isset($_SESSION['cart'])) {
+  $count = count($_SESSION['cart']);
+  if ($count > 1) {
     adr();
+  }
+}
+
 ?>
 
 </html>

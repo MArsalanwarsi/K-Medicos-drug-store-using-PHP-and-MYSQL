@@ -139,11 +139,10 @@ session_start();
                             <td> <?php echo $data['p_quantity'] ?></td>
                             <td> <?php echo $data['delivery_status'] ?> </td>
                             <td>
-                            <a style="cursor:pointer;">
-                              <div class="badge badge-outline-success">
-                                Click For Process
-                              </div>
-                              </a>
+                               <form action="../print.php" method="post">
+                                <input type="hidden" name="order" value="<?php echo $data['id'] ?>">
+                                <input type="submit" name="print_order" class="btn btn-outline-success" value="Print Order">
+                              </form>
                             </td>
                           </tr>
                               <?php 

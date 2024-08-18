@@ -39,9 +39,11 @@ include "doctype.php";
                     style='width:250px;height:200px' src="AdminPanel/<?php echo $data['img']; ?>"
                     alt="Card image cap"></a>
                 <div class="card-body">
+                  <div class="d-flex">
                   <h5 class="card-title"><?php echo $data['brand_name'] ?></h5>
-                  <p class="price">Rs <?php echo $data['price'] ?></p>
-                  <a href="shop-single.php?id=<?php echo $data['id'] ?>" class="btn btn-primary">Detail</a>
+                  <p class="price" style="margin-left:auto;">Rs <?php echo $data['price'] ?></p>
+                  </div>
+                  <a href="shop-single.php?id=<?php echo $data['id'] ?>" class="btn btn-outline-success">Detail</a>
                 </div>
               </div>
             </div>

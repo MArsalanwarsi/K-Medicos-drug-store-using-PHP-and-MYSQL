@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "doctype.php";
+
 ?>
 
 <body>
@@ -11,7 +12,10 @@ include "doctype.php";
     <?php
     include "header.php";
     ?>
-
+<script>
+  document.getElementById("profile").classList.add("active");
+  document.getElementById("Home").classList.remove("active");
+</script>
 
     <section style="background-color: #eee;">
       <div class="container py-2">
@@ -28,7 +32,7 @@ include "doctype.php";
         <?php
         include "config.php";
         $user_id = $_SESSION['id'];
-        $query = "SELECT register.id,register.name,register.email,register.password,register.date AS register_date,register.address,register.phone_no,register.country,orders.u_name,orders.u_country,orders.u_address,orders.u_phone,orders.delivery_status,orders.p_id,orders.p_name,
+        $query = "SELECT register.id,register.name,register.email,register.password,register.date AS register_date,register.address,register.phone_no,register.country,orders.id AS order_id,orders.u_name,orders.u_country,orders.u_address,orders.u_phone,orders.delivery_status,orders.p_id,orders.p_name,
 orders.generic_name,orders.p_quantity,orders.p_price,orders.p_prescription,orders.order_status,orders.date AS order_date FROM
 register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_id';";
         $userData = mysqli_query($db, $query);
@@ -42,8 +46,8 @@ register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_
                 <h5 class="my-3"><?php echo $data['name'] ?></h5>
                 <p class="text-muted mb-4"><?php echo $data['country'] ?></p>
                 <div class="d-flex justify-content-center mb-2">
-                  <button type="button" class="btn btn-primary" style="margin-right:10px;">Follow</button>
-                  <button type="button" class="btn btn-outline-primary ms-1">Message</button>
+                  <button type="button" class="btn btn-success" style="margin-right:10px;">Follow</button>
+                  <button type="button" class="btn btn-outline-success ms-1">Message</button>
                 </div>
               </div>
             </div>
@@ -243,11 +247,12 @@ register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Medication Name</th>
-                  <th scope="col">Dose</th>
-                  <th scope="col">Freequency</th>
-                  <th>Qauntity</th>
-                  <th>Order Date/Time</th>
-                  <th>Status</th>
+                  <th scope="col">Qauntity</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Delivery Mode</th>
+                  <th scope="col">Order Date/Time</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
                 </tr>
               </thead>
               <tbody>
@@ -261,12 +266,19 @@ register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_
                     <th scope="row"><?php echo $sno;
                     $sno++; ?></th>
                     <td><?php echo $data['p_name'] ?></td>
-                    <td contenteditable="true"></td>
-                    <td contenteditable="true"></td>
                     <td><?php echo $data['p_quantity'] ?></td>
+                    <td><?php echo $data['u_address'] ?></td>
+                    <td><?php echo $data['delivery_status'] ?></td>
                     <td><?php echo $data['order_date'] ?></td>
                     <td class="text-danger"><?php echo $data['order_status'] ?></td>
+                    <td>
+                      <form action="print.php" method="post">
+                      <input type="hidden" name="order" value="<?php echo $data['order_id'] ?>">
+                      <input type="submit" name="print_order" class="btn btn-success" value="Print Order">
+                      </form>
+                    </td>
                   </tr>
+
                   <?php
                 }
                 if (isset($_POST['u_phoneno_btn'])) {
@@ -305,6 +317,7 @@ register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_
     include 'footer.php';
     ?>
   </div>
+
 </body>
 
 </html>

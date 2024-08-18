@@ -29,7 +29,7 @@
               <?php
             } else {
               ?>
-              <li><a href="profile.php">Profile</a></li>
+              <li id="profile"><a href="profile.php">Profile</a></li>
               <li><a href="logout.php">Logout</a></li>
               <?php
             }
@@ -40,7 +40,7 @@
       <div class="icons">
         <a href="cart.php" class="icons-btn d-inline-block bag">
           <span class="icon-shopping-bag"></span>
-          <span class="number">
+          <span class="number bg-success text-light">
             <?php
             $count = 0;
             if (isset($_SESSION['cart'])) {
@@ -60,7 +60,7 @@
 </div>
 
 <!-- Login Form -->
-<div class="modal fade mt-5" id="loginModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" style="margin-top: 100px;"  id="loginModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <form action="code.php" method='POST' enctype="multipart/form-data">
@@ -99,7 +99,7 @@
 </div>
 <!-- Login Form -->
 <!-- Register Form -->
-<div class="modal fade mt-5" id="registerModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" style="margin-top: 100px;" id="registerModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <form action="code.php" method='POST' enctype="multipart/form-data">

@@ -86,7 +86,7 @@ include "doctype.php";
         <div class="row">
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="">
             <div class="icon mr-4 align-self-start">
-              <span class="icon-truck text-primary"></span>
+              <span class="icon-truck text-success"></span>
             </div>
             <div class="text">
               <h2>Free Shipping</h2>
@@ -96,7 +96,7 @@ include "doctype.php";
           </div>
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
             <div class="icon mr-4 align-self-start">
-              <span class="icon-refresh2 text-primary"></span>
+              <span class="icon-refresh2 text-success"></span>
             </div>
             <div class="text">
               <h2>Free Returns</h2>
@@ -106,7 +106,7 @@ include "doctype.php";
           </div>
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
             <div class="icon mr-4 align-self-start">
-              <span class="icon-help text-primary"></span>
+              <span class="icon-help text-success"></span>
             </div>
             <div class="text">
               <h2>Customer Support</h2>

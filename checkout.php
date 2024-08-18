@@ -129,9 +129,12 @@ include "doctype.php";
         $p_name = $value['p_name'];
         $p_price = $value['p_price'];
         $p_quantity = $value['p_quantity'];
+        $p_generic = $value['p_generic'];
+        $p_priscription = $value['p_priscription'];
+        $p_img = $value['p_img'];
 
 
-        $insert = mysqli_query($db, "INSERT INTO orders (u_id,u_name,u_country,u_address,u_phone,delivery_status,p_id,p_name,p_quantity,p_price)VALUES('$u_id','$u_name','$country','$address','$phone','$cod','$p_id','$p_name','$p_quantity','$p_price')");
+        $insert = mysqli_query($db, "INSERT INTO orders (u_id,u_name,u_country,u_address,u_phone,delivery_status,p_id,p_name,p_quantity,p_price,generic_name,p_prescription,p_image)VALUES('$u_id','$u_name','$country','$address','$phone','$cod','$p_id','$p_name','$p_quantity','$p_price','$p_generic','$p_prescription','$p_img')");
 
         $getOldQuantity = mysqli_query($db, "SELECT * FROM medicine WHERE id = '$p_id'");
         $dataQuantity = mysqli_fetch_assoc($getOldQuantity);
