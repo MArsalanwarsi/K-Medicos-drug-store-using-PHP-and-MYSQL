@@ -78,26 +78,26 @@ include "../config.php";
                               <div class="col-sm-3">
                                 <label for="exampleInputEmail1">Dosage</label>
                                 <input type="text" name="dosage" class="form-control text-light"
-                                  id="exampleInputUsername2" placeholder="Dosage">
+                                  id="exampleInputUsername2" placeholder="Dosage" Required>
                               </div>
 
 
                               <div class="col-sm-3">
                                 <label for="exampleInputEmail1">Brand Name</label>
                                 <input type="text" name="brand_name" class="form-control text-light"
-                                  id="exampleInputUsername2" placeholder="Brand Name">
+                                  id="exampleInputUsername2" placeholder="Brand Name" Required>
                               </div>
 
                               <div class="col-sm-3">
                                 <label for="exampleInputEmail1">Generic Name</label>
                                 <input type="text" name="generic_name" class="form-control text-light"
-                                  id="exampleInputUsername2" placeholder="Generic Name">
+                                  id="exampleInputUsername2" placeholder="Generic Name" Required>
                               </div>
 
                               <div class="col-sm-3">
                                 <label for="exampleInputEmail1">Strength</label>
                                 <input type="text" name="strength" class="form-control text-light"
-                                  id="exampleInputUsername2" placeholder="Strength">
+                                  id="exampleInputUsername2" placeholder="Strength" Required>
                               </div>
                             </div>
 
@@ -105,20 +105,20 @@ include "../config.php";
                               <div class="col-sm-3">
                                 <label for="exampleInputEmail1">Indication</label>
                                 <input type="text" name="indication" class="form-control text-light"
-                                  id="exampleInputUsername2" placeholder="Indication">
+                                  id="exampleInputUsername2" placeholder="Indication" Required>
                               </div>
 
 
                               <div class="col-sm-3">
                                 <label for="exampleInputEmail1">Adverce Drug Reaction</label>
                                 <input type="text" name="adverce_drug_reaction" class="form-control text-light"
-                                  id="exampleInputUsername2" placeholder="Adverce Drug Reaction">
+                                  id="exampleInputUsername2" placeholder="Adverce Drug Reaction" Required>
                               </div>
 
                               <div class="col-sm-3">
                                 <label for="exampleInputEmail1">Side Effect</label>
                                 <input type="text" name="side_effect" class="form-control text-light"
-                                  id="exampleInputUsername2" placeholder="Side Effect">
+                                  id="exampleInputUsername2" placeholder="Side Effect" Required>
                               </div>
 
                               <div class="col-sm-3">
@@ -162,19 +162,19 @@ include "../config.php";
                               <div class="col-sm-3">
                                 <label for="exampleInputEmail1">Counseling</label>
                                 <input type="text" name="counceling" class="form-control text-light"
-                                  id="exampleInputUsername2" placeholder="Counseling">
+                                  id="exampleInputUsername2" placeholder="Counseling" Required>
                               </div>
 
                               <div class="col-sm-3">
                                 <label for="exampleInputEmail1">Pack Size</label>
                                 <input type="text" name="pack_size" class="form-control text-light"
-                                  id="exampleInputUsername2" placeholder="Pack Size">
+                                  id="exampleInputUsername2" placeholder="Pack Size" Required>
                               </div>
 
                               <div class="col-sm-3">
                                 <label for="exampleInputEmail1">Quantity</label>
                                 <input type="number" name="quantity" class="form-control text-light"
-                                  id="exampleInputUsername2" placeholder="Quantity">
+                                  id="exampleInputUsername2" placeholder="Quantity" Required>
                               </div>
                             </div>
 
@@ -182,20 +182,20 @@ include "../config.php";
                               <div class="col-sm-3">
                                 <label for="exampleInputEmail1">Price</label>
                                 <input type="number" name="price" class="form-control text-light"
-                                  id="exampleInputUsername2" placeholder="Price">
+                                  id="exampleInputUsername2" placeholder="Price" Required>
                               </div>
 
 
                               <div class="col-sm-6">
                                 <label for="exampleInputEmail1">Prescription</label>
                                 <input type="text" name="prescription" class="form-control text-light"
-                                  id="exampleInputUsername2" placeholder="Prescription">
+                                  id="exampleInputUsername2" placeholder="Prescription" Required>
                               </div>
 
                               <div class="col-sm-3">
                                 <label for="newimg">Upload Image</label>
                                 <input type="text" name="img" class="form-control text-light" id="newimg"
-                                  placeholder="Upload Image" onclick="type='file'">
+                                  placeholder="Upload Image" onclick="type='file'" Required>
                               </div>
                             </div>
                           </div>
@@ -470,8 +470,28 @@ include "../config.php";
 
                         <?php
                         if (isset($_POST['update_medicine'])) {
-
+                          $dosage = $_POST['dosage'];
+                          $brand_name = $_POST['brand_name'];
+                          $generic_name = $_POST['generic_name'];
+                          $strength = $_POST['strength'];
+                          $indication = $_POST['indication'];
+                          $adverce_drug_reaction = $_POST['adverce_drug_reaction'];
+                          $side_effect = $_POST['side_effect'];
+                          $category_name = $_POST['category_name'];
+                          $company_name = $_POST['company_name'];
+                          $counceling = $_POST['counceling'];
+                          $pack_size = $_POST['pack_size'];
+                          $quantity = $_POST['quantity'];
+                          $price = $_POST['price'];
+                          $prescription = $_POST['prescription'];
                           $id = $_POST['id'];
+                          if(empty($_FILES['img'])){
+                            $update = mysqli_query($db, "UPDATE medicine SET dosage = '$dosage',brand_name='$brand_name',generic_name='$generic_name',strength='$strength',indication='$indication',adverce_drug_reaction='$adverce_drug_reaction',side_effect='$side_effect',category='$category_name',company='$company_name',counseling='$counceling',pack_size='$pack_size',quatity='$quantity',price='$price',prescription='$prescription' WHERE id ='$id'");
+                            echo "<script>
+                                          alert('Medicine Updated Successfully');
+                                          location.assign('medicine.php');
+                                      </script>";
+                          }else{
                           $img = $_FILES['img']['name'];
                           $tmp_name = $_FILES['img']['tmp_name'];
                           $destination = "images/" . $img;
@@ -479,21 +499,6 @@ include "../config.php";
 
                           if ($extension == "png" or $extension == "jpg" or $extension == "jpeg" or $extension == "jfif" or $extension == "webp") {
                             if (move_uploaded_file($tmp_name, $destination)) {
-                              $dosage = $_POST['dosage'];
-                              $brand_name = $_POST['brand_name'];
-                              $generic_name = $_POST['generic_name'];
-                              $strength = $_POST['strength'];
-                              $indication = $_POST['indication'];
-                              $adverce_drug_reaction = $_POST['adverce_drug_reaction'];
-                              $side_effect = $_POST['side_effect'];
-                              $category_name = $_POST['category_name'];
-                              $company_name = $_POST['company_name'];
-                              $counceling = $_POST['counceling'];
-                              $pack_size = $_POST['pack_size'];
-                              $quantity = $_POST['quantity'];
-                              $price = $_POST['price'];
-                              $prescription = $_POST['prescription'];
-
                               $update = mysqli_query($db, "UPDATE medicine SET dosage = '$dosage',brand_name='$brand_name',generic_name='$generic_name',strength='$strength',indication='$indication',adverce_drug_reaction='$adverce_drug_reaction',side_effect='$side_effect',category='$category_name',company='$company_name',counseling='$counceling',pack_size='$pack_size',quatity='$quantity',price='$price',prescription='$prescription',img='$destination' WHERE id ='$id'");
 
                               echo "<script>
@@ -514,6 +519,9 @@ include "../config.php";
                                           location.assign('medicine.php');
                                       </script>";
                           }
+
+                          }
+
                         }
 
 

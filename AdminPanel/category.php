@@ -222,7 +222,7 @@ session_start();
                               location.assign('category.php');
                             </script>
                             <?php
-                          } else if ($_POST['img'] == "") {
+                          } else if (empty($_FILES['img'])) {
                             $update = mysqli_query($db, "UPDATE category SET category_name = '$category_name' WHERE id ='$id'");
                             ?>
                               <script>
