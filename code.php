@@ -34,7 +34,7 @@ if (isset($_POST['login'])) {
                 $name = $data['name'];
                 $_SESSION['name'] = $name;
                 $_SESSION['id'] = $data['id'];
-                header('location:index.php');
+                header('location:profile.php');
             }
         }
     } else {

@@ -161,7 +161,7 @@ include "doctype.php";
           <div class="col-lg-6 mb-5 mb-lg-0">
             <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_1.jpg');">
               <div class="banner-1-inner align-self-center">
-                <h2 class="fs-5">Pharmacy Products</h2>
+                <h2 class="fs-5">K-Medicos</h2>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
                 </p>
               </div>

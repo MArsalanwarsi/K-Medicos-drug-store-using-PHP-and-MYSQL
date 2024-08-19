@@ -2,6 +2,17 @@
 session_start();
 include "doctype.php";
 ?>
+<style>
+  .custom-pill .nav-item a {
+    background: #f4f4f4;
+    color: black !important;
+  }
+
+  .custom-pill .nav-item .nav-link.active {
+    background-color: green !important;
+    color: white !important;
+  }
+</style>
 
 <body>
   <div class="site-wrap">
@@ -9,8 +20,8 @@ include "doctype.php";
     include "header.php";
     ?>
     <script>
-  document.getElementById("Home").classList.remove("active");
-</script>
+      document.getElementById("Home").classList.remove("active");
+    </script>
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
@@ -46,7 +57,7 @@ include "doctype.php";
                 <input type="hidden" name="p_price" value="<?php echo $data['price'] ?>">
                 <input type="hidden" name="p_img" value="<?php echo $data['img'] ?>">
                 <input type="hidden" name="p_adr" value="<?php echo $data['adverce_drug_reaction'] ?>">
-                <input type="hidden" name="p_generic" value="<?php echo $data['generic_name'] ?>">   
+                <input type="hidden" name="p_generic" value="<?php echo $data['generic_name'] ?>">
                 <input type="hidden" name="p_priscription" value="<?php echo $data['prescription'] ?>">
                 <div class="mb-5">
                   <div class="input-group mb-3" style="max-width: 220px;">
@@ -60,7 +71,8 @@ include "doctype.php";
                     </div>
                   </div>
                 </div>
-                <p><button type="submit" name="addCart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-outline-success">Add
+                <p><button type="submit" name="addCart"
+                    class="buy-now btn btn-sm height-auto px-4 py-3 btn-outline-success">Add
                     To Cart</button></p>
               </form>
             </div>
@@ -69,7 +81,7 @@ include "doctype.php";
             <div class="mt-5">
               <ul class="nav nav-pills mb-3 custom-pill" id="pills-tab" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link active " id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+                  <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
                     aria-controls="pills-home" aria-selected="true">Ordering Information</a>
                 </li>
                 <li class="nav-item">
@@ -136,7 +148,7 @@ include "doctype.php";
           <div class="col-lg-6 mb-5 mb-lg-0">
             <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_1.jpg');">
               <div class="banner-1-inner align-self-center">
-                <h2>Pharma Products</h2>
+                <h2>K-Medicos</h2>
                 <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
                 </p>
               </div>

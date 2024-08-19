@@ -1482,7 +1482,7 @@ a:hover {
 }
 .custom-pill .nav-item a {
   background: #f4f4f4;
-  color: #000 !important;
+  color: #000 ;
 }
 
 .custom-table th {
