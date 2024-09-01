@@ -27,123 +27,173 @@ if (isset($_POST["print_order"])) {
     $total = $amount + $tax;
     $html = "<!DOCTYPE html>
 <html lang='en'>
-
 <head>
-    <meta charset='utf-8' />
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link href='images/logo.png' rel='icon' />
-    <title>Order Invoice K-Medicos</title>
-
-    <link href='https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css' rel='stylesheet'>
-    <style>
-    .table {
-        display: table;
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    .table-row {
-        display: table-row;
-    }
-
-    .table-cell {
-        display: table-cell;
-        border: 1px solid black;
-        padding: 1em;
-    }
-        .noborder{
-        border:none;
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>K-Medicos Receipt</title>
+   <style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    color: #333;
+    margin: 0;
+    padding: 0;
 }
-</style>
+
+.receipt-container {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+    background-color: green;
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+header p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.receipt-body h2 {
+    text-align: center;
+    font-size: 24px;
+    color: green;
+    margin-bottom: 20px;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.customer-details, .transaction-details {
+    width: 45%;
+}
+
+h3 {
+    margin-top: 0;
+    font-size: 18px;
+    color: green;
+}
+
+.item-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.item-list table, .item-list th, .item-list td {
+    border: 1px solid #ddd;
+}
+
+.item-list th, .item-list td {
+    padding: 10px;
+    text-align: left;
+}
+
+.item-list th {
+    background-color: green;
+    color: #fff;
+}
+
+.item-list tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.total {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+   </style>
 </head>
-
 <body>
-    <div class='max-w-7xl mx-auto'>
-        <header class='flex justify-between px-10 py-5'>
-            <h2 class='text-2xl font-bold' style='margin-top: 20px;'>K-Medicos</h2>
-            <h1 class='text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl flex items-end'>
-                Invoice</h1>
+    <div class='receipt-container'>
+        <header>
+            <h1>K-Medicos</h1>
+            <p>1234 Main Street, Karachi, Pakistan</p>
+            <p>Phone: (021) 123-4567</p>
+            <p>Email: info@k_medicos.pk</p>
         </header>
-
-        <hr>
-
-        <section class='flex justify-between px-10 py-5'>
-            <p class='text-xs'>
-                <strong>Date:</strong>
-                <span>$date</span>
-            </p>
-
-            <p class='text-xs'>
-                <strong>Invoice No:</strong>
-                18635
-            </p>
-        </section>
-
-        <hr>
-
-        <section class='flex justify-between px-10 py-5'>
-            <p class='text-xs'>
-                <strong>Invoiced To:</strong><br>
-                <span class='name'>$name</span><br>
-                <span class='address'>$address</span><br>
-                <span class='country'>$country</span><br>
-                 <span class='phone_no'>$phone</span><br>
-            </p>
-
-            <p class='text-xs text-right'>
-                <strong>Pay Mode:</strong><br>
-                <span class='pay_mode'>$pay_mode</span>
-            </p>
-        </section>
-
-        <section class='px-10 py-5'>
-            <div class='shadow overflow-hidden border-b border-gray-200 sm:rounded-lg'>
-               <div class='table'>
-    <div class='table-row'>
-        <div class='table-cell'><b>Product Name</b></div>
-        <div class='table-cell'><b>Quantity</b></div>
-        <div class='table-cell'><b> Unit Price</b></div>
-        <div class='table-cell'><b>Amount</b></div>
-
-    </div>
-    <div class='table-row'>
-        <div class='table-cell'>$p_name</div>
-        <div class='table-cell'> $p_quantity</div>
-        <div class='table-cell'>$p_price</div>
-        <div class='table-cell'>$amount</div>
-    </div>
-     <div class='table-row'>
-      <div class='table-cell noborder'></div>
-        <div class='table-cell noborder'></div>
-         <div class='table-cell noborder'></div>
-        <div class='table-cell noborder'></div>
-     </div>
-    <div class='table-row'>
-        <div class='table-cell noborder'></div>
-        <div class='table-cell noborder'></div>
-        <div class='table-cell'> Sub-Total</div>
-        <div class='table-cell'>$amount</div>
-    </div>
-    <div class='table-row'>
-        <div class='table-cell noborder'></div>
-        <div class='table-cell noborder'></div>
-        <div class='table-cell'> GST @ 18%</div>
-        <div class='table-cell'>$tax</div>
-    </div>
-    <div class='table-row'>
-        <div class='table-cell noborder'></div>
-        <div class='table-cell noborder'></div>
-        <div class='table-cell'>Total</div>
-        <div class='table-cell'>$total</div>
-    </div>
-</div>
+        
+        <section class='receipt-body'>
+            <h2>Receipt</h2>
+            
+            <div class='details'>
+                <div class='customer-details'>
+                    <h3>Customer Details</h3>
+                    <p><strong>Name:</strong> $name</p>
+                    <p><strong>Address:</strong> $address, $country</p>
+                    <p><strong>Phone:</strong> $phone</p>
+                </div>
+                
+                <div class='transaction-details'>
+                    <h3>Transaction Details</h3>
+                    <p><strong>Receipt Number:</strong> #1000$order_id</p>
+                    <p><strong>Date:</strong> $date</p>
+                </div>
+            </div>
+            
+            <div class='item-list'>
+                <h3>Item Details</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>$p_name</td>
+                            <td>$p_quantity</td>
+                            <td>PKR $p_price</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class='total'>
+            <p><strong>Payment Mode:</strong> $pay_mode</p>
+                <p><strong>Amount:</strong> PKR $amount</p>
+                <p><strong>Tax:</strong> PKR $tax</p>
+                <p><strong>Total Amount: </strong><span style='color: green;text-decoration: underline'>PKR $total</span></p>
             </div>
         </section>
+        
+        <footer>
+            <p>Thank you for using K-Medicos!</p>
+        </footer>
     </div>
 </body>
-
-</html>";
+</html>
+";
     // Load HTML content 
     $dompdf->loadHtml($html);
     // (Optional) Setup the paper size and orientation 
@@ -153,11 +203,4 @@ if (isset($_POST["print_order"])) {
 
     // Output the generated PDF to Browser 
     $dompdf->stream();
-
-
-
-
-
 }
-
-?>

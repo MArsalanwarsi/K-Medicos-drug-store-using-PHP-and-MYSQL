@@ -1,6 +1,9 @@
 <?php 
 
 session_start();
+if (!isset($_SESSION["name"])){
+  header("location:../index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -138,10 +141,14 @@ session_start();
                             <td> <?php echo $data['p_price'] ?></td>
                             <td> <?php echo $data['p_quantity'] ?></td>
                             <td> <?php echo $data['delivery_status'] ?> </td>
-                            <td>
-                               <form action="../print.php" method="post">
+                            <td class="d-flex">
+                               <form action="../print.php" method="post" class="mr-2">
                                 <input type="hidden" name="order" value="<?php echo $data['id'] ?>">
-                                <input type="submit" name="print_order" class="btn btn-outline-success" value="Print Order">
+                                <input type="submit" name="print_order" class="btn btn-outline-success " value="Print Order">
+                              </form>
+                               <form action="../shipping_label.php" method="post">
+                                <input type="hidden" name="order" value="<?php echo $data['id'] ?>">
+                                <input type="submit" name="print_label" class="btn btn-outline-success" value="Print Label">
                               </form>
                             </td>
                           </tr>
