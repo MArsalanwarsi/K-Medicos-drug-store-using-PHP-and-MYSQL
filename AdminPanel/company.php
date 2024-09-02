@@ -9,8 +9,8 @@ include "../config.php";
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <title>K-Medico Admin Panel</title>
-    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
+  <title>K-Medico Admin Panel</title>
+  <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon">
   <!-- plugins:css -->
   <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
@@ -105,13 +105,13 @@ include "../config.php";
                           <th> Action </th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody id="table_data">
                         <?php
                         include "../config.php";
                         $fetchAllCompany = mysqli_query($db, "SELECT * FROM company");
                         $sno = 1;
                         foreach ($fetchAllCompany as $data) {
-                          ?>
+                        ?>
                           <tr>
                             <td>
                               <?php echo $sno;
@@ -200,43 +200,6 @@ include "../config.php";
                         <?php
                         }
                         ?>
-
-
-                        <?php
-
-                        if (isset($_POST['update_company'])) {
-                          include "../config.php";
-                          $id = $_POST['update_id'];
-                          $company_name = $_POST['company_name'];
-
-                          $update = mysqli_query($db, "UPDATE company SET company_name = '$company_name' WHERE id ='$id'");
-                          if ($update) {
-                            ?>
-                            <script>
-                              alert('Company Updated Successfully');
-                              location.assign('company.php');
-                            </script>
-                            <?php
-                          }
-                        }
-                        if (isset($_POST['delete_company'])) {
-                          include "../config.php";
-                          $id = $_POST['delete_id'];
-
-                          $delete = mysqli_query($db, "DELETE FROM company WHERE id ='$id'");
-                          if ($delete) {
-                            ?>
-                            <script>
-                              alert('Company Deleted Successfully');
-                              location.assign('company.php');
-                            </script>
-                            <?php
-                          }
-                        }
-                        ?>
-
-
-
                       </tbody>
                     </table>
                   </div>
@@ -251,6 +214,57 @@ include "../config.php";
         <?php
         include "footer.php";
         ?>
+        <?php
+
+        if (isset($_POST['update_company'])) {
+          include "../config.php";
+          $id = $_POST['update_id'];
+          $company_name = $_POST['company_name'];
+
+          $update = mysqli_query($db, "UPDATE company SET company_name = '$company_name' WHERE id ='$id'");
+          if ($update) {
+        ?>
+            <script>
+              alert('Company Updated Successfully');
+              location.assign('company.php');
+            </script>
+          <?php
+          }
+        }
+        if (isset($_POST['delete_company'])) {
+          include "../config.php";
+          $id = $_POST['delete_id'];
+
+          $delete = mysqli_query($db, "DELETE FROM company WHERE id ='$id'");
+          if ($delete) {
+          ?>
+            <script>
+              alert('Company Deleted Successfully');
+              location.assign('company.php');
+            </script>
+        <?php
+          }
+        }
+        ?>
+        <script>
+          $(document).ready(function() {
+            $("#searchbox").keyup(function() {
+              var value = $(this).val();
+
+              $.ajax({
+                url: "search.php",
+                method: "POST",
+                data: {
+                  "company": value
+                },
+                success: function(data) {
+                  $("#table_data").html(data);
+                }
+              })
+            })
+
+          })
+        </script>
 </body>
 
 </html>

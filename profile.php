@@ -261,6 +261,9 @@ register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_
                 $userData = mysqli_query($db, $query);
                 $sno = 1;
                 foreach ($userData as $data) {
+                  if($data['p_name']!=null){
+                    
+                  
                   ?>
                   <tr>
                     <th scope="row"><?php echo $sno;
@@ -280,7 +283,9 @@ register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_
                   </tr>
 
                   <?php
+                  }
                 }
+              
                 if (isset($_POST['u_phoneno_btn'])) {
                   $user_id = $_SESSION['id'];
                   $phonenumber = $_POST['u_phoneno'];
