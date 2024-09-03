@@ -149,7 +149,7 @@ if (!isset($_SESSION["name"])) {
                                 <input type="hidden" name="order" value="<?php echo $data['id'] ?>">
                                 <input type="submit" name="print_order" class="btn btn-outline-success " value="Print Order">
                               </form>
-                              <form action="../shipping_label.php" method="post">
+                              <form action="Label_print.php" method="post">
                                 <input type="hidden" name="order" value="<?php echo $data['id'] ?>">
                                 <input type="submit" name="print_label" class="btn btn-outline-success" value="Print Label">
                               </form>

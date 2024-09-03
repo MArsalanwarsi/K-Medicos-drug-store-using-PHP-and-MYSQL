@@ -34,7 +34,7 @@ if (isset($_POST["print_order"])) {
    <style>
     body {
     font-family: Arial, sans-serif;
-    background-color: #f1f1f1;
+    background-color: #fffff;
     color: #333;
     margin: 0;
     padding: 0;
