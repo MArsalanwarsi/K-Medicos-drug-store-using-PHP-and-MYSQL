@@ -23,15 +23,15 @@
             <li id="about"><a href="about.php">About</a></li>
             <?php
             if (!isset($_SESSION['name'])) {
-              ?>
+            ?>
               <li><a href="" data-toggle="modal" data-target="#loginModel">Login</a></li>
               <li><a href="" data-toggle="modal" data-target="#registerModel">Sign Up</a></li>
-              <?php
+            <?php
             } else {
-              ?>
+            ?>
               <li id="profile"><a href="profile.php">Profile</a></li>
               <li><a href="logout.php">Logout</a></li>
-              <?php
+            <?php
             }
             ?>
           </ul>
@@ -60,7 +60,7 @@
 </div>
 
 <!-- Login Form -->
-<div class="modal fade" style="margin-top: 100px;"  id="loginModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div class="modal fade" style="margin-top: 100px;" id="loginModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <form action="code.php" method='POST' enctype="multipart/form-data">
@@ -73,16 +73,19 @@
         </div>
         <div class="modal-body">
           <div class="form-group row">
-            <div class="col-sm-12">
+            <div class="col-sm-12 mb-2">
               <label for="exampleInputEmail1">Email</label>
               <input type="email" class="form-control text-light bg-dark" name="email" id="exampleInputUsername2"
                 placeholder="Email Address" required>
             </div>
 
-            <div class="col-sm-12">
+            <div class="col-sm-12 mb-2">
               <label for="exampleInputEmail1">Password</label>
               <input type="password" class="form-control text-light bg-dark" name="password" id="exampleInputUsername2"
                 placeholder="Password" required>
+            </div>
+            <div class="col-sm-12">
+              <a class="text-danger" style="text-decoration: underline;float:right;text-underline-offset: 5px" href="forgetPass.php">Forgot Password</a>
             </div>
           </div>
 
@@ -113,19 +116,19 @@
         <div class="modal-body">
           <div class="form-group row">
 
-            <div class="col-sm-12">
+            <div class="col-sm-12 mb-2">
               <label for="exampleInputEmail1">Full Name</label>
               <input type="text" class="form-control text-light bg-dark" name="name" id="exampleInputUsername2"
                 placeholder="Fullname" required>
             </div>
 
-            <div class="col-sm-12">
+            <div class="col-sm-12 mb-2">
               <label for="exampleInputEmail1">Email</label>
               <input type="email" class="form-control text-light bg-dark" name="email" id="exampleInputUsername2"
                 placeholder="Email Address" required>
             </div>
 
-            <div class="col-sm-12">
+            <div class="col-sm-12 mb-2">
               <label for="exampleInputEmail1">Password</label>
               <input type="password" class="form-control text-light bg-dark" name="password" id="exampleInputUsername2"
                 placeholder="Password" required>
