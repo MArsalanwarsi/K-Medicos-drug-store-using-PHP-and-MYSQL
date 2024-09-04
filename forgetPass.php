@@ -76,9 +76,9 @@ button:hover{
     <div class="box">
     <h1 class="tit">Forgot Password</h1>
     <p class="para">Forgot your password ? Don't worry we are just here to solve your problem ! Just enter your e-mail address to proceed.</p>
-    <form action="otp.php" method="post">
+    <form action="code.php" method="post">
         <input type="email" name="email" id="email" placeholder="Your e-mail address" required><br>
-        <button name="Forgot_password">Reset my Password</button>
+        <button type="submit" name="Forgot_password">Reset my Password</button>
     </form>
 </div>
 </body>

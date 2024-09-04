@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 18, 2024 at 06:47 AM
+-- Generation Time: Sep 05, 2024 at 12:30 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -395,9 +395,9 @@ CREATE TABLE `medicine` (
 --
 
 INSERT INTO `medicine` (`id`, `dosage`, `brand_name`, `generic_name`, `strength`, `indication`, `adverce_drug_reaction`, `side_effect`, `category`, `company`, `counseling`, `pack_size`, `quatity`, `price`, `prescription`, `img`, `date`) VALUES
-(1, 'Tablet', 'Atarax', 'hydroxyzine', '10mg', 'Anxiety, Insomnia, Urticaria', 'Hemolysis, Arrhythmias,Paracetamol', 'Hypotension', 'Medicine', 'GLAXOSMITHKLINE', 'adminster at bed time', '50', 2, 34, 'Not Required', 'images/11152_1604x1260.webp', '2023-02-02'),
+(1, 'Tablet', 'Atarax', 'hydroxyzine', '10mg', 'Anxiety, Insomnia, Urticaria', 'Hemolysis, Arrhythmias,Paracetamol', 'Hypotension', 'Medicine', 'GLAXOSMITHKLINE', 'adminster at bed time', '50', 1, 34, 'Not Required', 'images/11152_1604x1260.webp', '2023-02-02'),
 (3, 'capsule', 'Risek', 'Omeprazole', '40mg', 'gastric', 'Skin rashes, Paresthesia, Arthralgia ', 'Headache, GI upset, ', 'Medicine', 'GETZ PHARMA PAKISTAN (PVT) LTD', 'Take before meal, best if taken before breakfast, Do not crush or chew capsule', '14', 56, 366, 'Not Required', 'images/risek-40mg.jpg', '2023-02-07'),
-(4, 'Tablet', 'Panadol', 'Paracetamol', '500mg', 'For relief of mild to moderate Pain & as antipyretic', 'Cyanosis, hypoglycemia, ', 'Skin eruptions, CNS stimulation', 'Medicine', 'GLAXOSMITHKLINE', 'Take oral form with or without meals.', '10 ', 98, 28, 'Not Required', 'images/panadol.jpeg', '2023-02-07'),
+(4, 'Tablet', 'Panadol', 'Paracetamol', '500mg', 'For relief of mild to moderate Pain & as antipyretic', 'Cyanosis, hypoglycemia, ', 'Skin eruptions, CNS stimulation', 'Medicine', 'GLAXOSMITHKLINE', 'Take oral form with or without meals.', '10 ', 97, 28, 'Not Required', 'images/panadol.jpeg', '2023-02-07'),
 (5, 'Tablet', 'Ponstan', 'Mefenamic', '250mg', 'Mild', 'Edema, Renal impairment, Raised Liver enzymes', 'GI intolerance, Skin rashes', 'Medicine', 'PFIZER LABORATORIES LTD', 'Immediate after meal,, avois taking with antacids', '10', 200, 30, 'Not Required', 'images/ponstan-tablets-250-mg-600s.webp', '2023-02-07'),
 (6, 'Suspension', 'Brufen', 'Ibuprofen', '100mg/5ml', 'Rheumotoid arthritis, juvenile rheumatoid arthritis,  Mils to moderate pain and fever', 'rarely aseptic menningitis', 'GI upset  or bleeding', 'Medicine', 'ABBOTT LABORATORIES (PAKISTAN) LIMITED', 'Immediate after meal, Take with glass of water', '120ml', 4, 70, 'Not Required', 'images/brufen serup.png', '2023-02-07'),
 (8, 'Tablet', 'Rivotril', 'Clonazepam', '2mg', 'Epilepsy', 'Ataxia, respiratory dipression', 'Fatigue, Muscle weakness, Dizziness', 'Medicine', 'MARTIN DOW PHARMACEUTICALS (PAK) LTD', 'Do not stop taking medicine abruptly, Take oral form with or without meal', '30', 30, 150, 'Required', 'images/rivotrill 2mg.webp', '2023-02-07'),
@@ -438,7 +438,21 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `u_id`, `u_name`, `u_country`, `u_address`, `u_phone`, `delivery_status`, `p_id`, `p_name`, `generic_name`, `p_quantity`, `p_price`, `date`, `order_status`, `p_prescription`, `p_image`) VALUES
 (6, 3, 'Arsalan Warsi ', 'PK', 'Gulistan E Johar', '+923150207265', 'cash on delivery', 1, 'Atarax', 'hydroxyzine', 1, 34, '2024-08-17 15:19:24', 'Pending', '', 'images/11152_1604x1260.webp'),
-(7, 3, 'Arsalan Warsi ', 'PK', 'Gulistan E Johar', '+923150207265', 'cash on delivery', 4, 'Panadol', 'Paracetamol', 1, 28, '2024-08-17 15:19:24', 'Pending', '', 'images/panadol.jpeg');
+(7, 3, 'Arsalan Warsi ', 'PK', 'Gulistan E Johar', '+923150207265', 'cash on delivery', 4, 'Panadol', 'Paracetamol', 1, 28, '2024-08-17 15:19:24', 'Pending', '', 'images/panadol.jpeg'),
+(8, 0, 'Hassan Shah', 'PK', 'Karachi Garden East', '03124232322', 'cash on delivery', 1, 'Atarax', 'hydroxyzine', 1, 34, '2024-09-01 23:47:37', 'Pending', '', 'images/11152_1604x1260.webp'),
+(9, 0, 'Hassan Shah', 'PK', 'Karachi Garden East', '03124232322', 'cash on delivery', 4, 'Panadol', 'Paracetamol', 1, 28, '2024-09-01 23:47:37', 'Pending', '', 'images/panadol.jpeg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `otp`
+--
+
+CREATE TABLE `otp` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `code` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -486,9 +500,10 @@ CREATE TABLE `register` (
 --
 
 INSERT INTO `register` (`id`, `name`, `email`, `password`, `role`, `date`, `address`, `phone_no`, `country`) VALUES
-(1, 'Admin', 'admin@gmail.com', 'admin', 1, '2023-01-28 19:46:22', NULL, NULL, NULL),
+(0, 'Hassan Shah', 'hassanshah1523@gmail.com', 'hassan123', 2, '2024-09-01 23:40:21', 'Karachi Garden East', '03124232322', 'PK'),
+(1, 'Admin', 'admin@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, '2024-09-04 22:20:25', NULL, NULL, NULL),
 (2, 'Faheem', 'faheem@gmail.com', '123', 2, '2024-08-10 21:17:44', 'Bhitai Colony Near Aman Tower Korangi Crossing Karachi', '03032259008', 'PK'),
-(3, 'Arsalan Warsi ', 'mohammadarsalanwarsi@gmail.com', '1234', 2, '2024-08-11 00:06:06', 'Gulistan E Johar', '+923150207265', 'PK');
+(3, 'Arsalan Warsi ', 'mohammadarsalanwarsi@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 2, '2024-09-04 22:14:31', 'Gulistan E Johar', '+923150207265', 'PK');
 
 --
 -- Indexes for dumped tables
@@ -525,6 +540,12 @@ ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `otp`
+--
+ALTER TABLE `otp`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `rating`
 --
 ALTER TABLE `rating`
@@ -550,7 +571,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `company`
 --
 ALTER TABLE `company`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `country`
@@ -568,19 +589,13 @@ ALTER TABLE `medicine`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `rating`
+-- AUTO_INCREMENT for table `otp`
 --
-ALTER TABLE `rating`
+ALTER TABLE `otp`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `register`
---
-ALTER TABLE `register`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
