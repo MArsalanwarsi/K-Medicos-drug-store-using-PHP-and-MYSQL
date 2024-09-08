@@ -12,6 +12,7 @@
       <div class="col-lg-4 col-md-4 mx-auto mb-5 mb-lg-0">
         <h3 class="footer-heading mb-4">Quick Links</h3>
         <ul class="list-unstyled">
+          <li><a href="track_order.php">Track Order</a></li>
           <?php
           include "config.php";
           $fetchAllMedicine = mysqli_query($db, "SELECT * FROM category");

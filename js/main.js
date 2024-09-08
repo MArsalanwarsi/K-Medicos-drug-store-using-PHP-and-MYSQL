@@ -136,15 +136,22 @@ jQuery(document).ready(function($) {
 	var sitePlusMinus = function() {
 		$('.js-btn-minus').on('click', function(e){
 			e.preventDefault();
-			if ( $(this).closest('.input-group').find('.form-control').val() != 0  ) {
-				$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) - 1);
+			var $value = $(this).closest('.input-group').find('.form-control');
+			if ( $value.val() != 0  ) {
+				$value.val(parseInt($value.val()) - 1);
 			} else {
-				$(this).closest('.input-group').find('.form-control').val(parseInt(0));
+				$value.val(parseInt(0));
 			}
 		});
 		$('.js-btn-plus').on('click', function(e){
 			e.preventDefault();
-			$(this).closest('.input-group').find('.form-control').val(parseInt($(this).closest('.input-group').find('.form-control').val()) + 1);
+			var $value = $(this).closest('.input-group').find('.form-control');
+			// if less than maxlenth on input add 1
+			if ( $value.val() >= parseInt($value.attr('maxlength')) ) {
+				$value.val(parseInt($value.attr('maxlength')));
+			} else {
+				$value.val(parseInt($value.val()) + 1);
+			}
 		});
 	};
 	sitePlusMinus();

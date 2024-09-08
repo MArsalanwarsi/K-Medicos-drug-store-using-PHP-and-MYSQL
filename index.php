@@ -3,11 +3,22 @@ session_start();
 include "config.php";
 include "doctype.php";
 ?>
-
+<style>
+  .site-blocks-cover video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+</style>
 <body>
   <div class="site-wrap">
     <?php include "header.php"; ?>
-    <div class="site-blocks-cover" style="background-image: url('images/hero_1.jpg');">
+    <div class="site-blocks-cover">
+      <video src="images/head_video.mp4" muted loop autoplay></video>
       <div class="container">
         <div class="row">
           <div class="col-lg-7 mx-auto order-lg-2 align-self-center">

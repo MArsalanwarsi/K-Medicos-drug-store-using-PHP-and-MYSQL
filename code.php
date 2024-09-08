@@ -45,13 +45,13 @@ if (isset($_POST['login'])) {
             if ($data['role'] == 1) {
                 $name = $data['name'];
                 $_SESSION['name'] = $name;
-                echo "<script> alert('Login Successful<br> Welcome $name')
+                echo "<script> alert('Login Successful WELCOME $name')
                 location.assign('AdminPanel/index.php');</script>";
             } else {
                 $name = $data['name'];
                 $_SESSION['name'] = $name;
                 $_SESSION['id'] = $data['id'];
-                echo "<script> alert('Login Successful Welcome $name')
+                echo "<script> alert('Login Successful WELCOME $name')
                 location.assign('profile.php');</script>";
             }
         }

@@ -30,7 +30,7 @@ include "doctype.php";
         <div class="row">
           <?php
           include "config.php";
-          $fetchAllMedicine = mysqli_query($db, "SELECT * FROM medicine WHERE quatity > 0 ");
+          $fetchAllMedicine = mysqli_query($db, "SELECT * FROM medicine ");
           foreach ($fetchAllMedicine as $data) {
             ?>
             <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center ">

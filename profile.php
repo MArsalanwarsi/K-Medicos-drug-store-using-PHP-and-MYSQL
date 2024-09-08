@@ -33,7 +33,7 @@ include "doctype.php";
         include "config.php";
         $user_id = $_SESSION['id'];
         $query = "SELECT register.id,register.name,register.email,register.password,register.date AS register_date,register.address,register.phone_no,register.country,orders.id AS order_id,orders.u_name,orders.u_country,orders.u_address,orders.u_phone,orders.delivery_status,orders.p_id,orders.p_name,
-orders.generic_name,orders.p_quantity,orders.p_price,orders.p_prescription,orders.order_status,orders.date AS order_date FROM
+orders.generic_name,orders.p_quantity,orders.p_price,orders.p_prescription,orders.order_status,tracking_no,orders.date AS order_date FROM
 register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_id';";
         $userData = mysqli_query($db, $query);
         $data = mysqli_fetch_assoc($userData)
@@ -45,10 +45,10 @@ register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_
                 <img src="images/ava3.webp" alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                 <h5 class="my-3"><?php echo $data['name'] ?></h5>
                 <p class="text-muted mb-4"><?php echo $data['country'] ?></p>
-                <div class="d-flex justify-content-center mb-2">
+                <!-- <div class="d-flex justify-content-center mb-2">
                   <button type="button" class="btn btn-success" style="margin-right:10px;">Follow</button>
                   <button type="button" class="btn btn-outline-success ms-1">Message</button>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -61,15 +61,6 @@ register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_
                   </div>
                   <div class="col-sm-9">
                     <p class="text-muted mb-0"><?php echo $data['email'] ?></p>
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-3">
-                    <p class="mb-0">Password</p>
-                  </div>
-                  <div class="col-sm-9">
-                    <p class="text-muted mb-0"><?php echo $data['password'] ?></p>
                   </div>
                 </div>
                 <hr>
@@ -251,6 +242,7 @@ register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_
                   <th scope="col">Address</th>
                   <th scope="col">Delivery Mode</th>
                   <th scope="col">Order Date/Time</th>
+                  <th scope="col">Tracking No</th>
                   <th scope="col">Status</th>
                   <th scope="col">Action</th>
                 </tr>
@@ -273,7 +265,37 @@ register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_
                     <td><?php echo $data['u_address'] ?></td>
                     <td><?php echo $data['delivery_status'] ?></td>
                     <td><?php echo $data['order_date'] ?></td>
-                    <td class="text-danger"><?php echo $data['order_status'] ?></td>
+                    <td><?php echo $data['tracking_no'] ?></td>
+                    <?php
+                    $tracking_no=$data['tracking_no'];
+                    $track=mysqli_query($db,"SELECT * FROM tracking WHERE tracking_no = '$tracking_no'");
+                    $row = mysqli_fetch_array($track);
+                    if($row['status']=='delivered'){
+                      ?>
+                      <td>
+                        <p class="text-success">Delivered</p>
+                      </td>
+                      <?php
+                    }else if($row['status']== 'shipped'){
+                      ?>
+                      <td>
+                        <p class="text-warning">Shipped</p>
+                      </td>
+                      <?php
+                    }else if($row['status']=='confirmed'){
+                      ?>
+                      <td>
+                        <p class="text-primary">Confirmed</p>
+                      </td>
+                      <?php
+                    }else{
+                      ?>
+                      <td>
+                        <p class="text-danger">Pending</p>
+                      </td>
+                      <?php
+                    }
+                    ?>
                     <td>
                       <form action="print.php" method="post">
                       <input type="hidden" name="order" value="<?php echo $data['order_id'] ?>">

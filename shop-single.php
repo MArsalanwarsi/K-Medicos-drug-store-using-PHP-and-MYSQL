@@ -51,6 +51,11 @@ include "doctype.php";
             <div class="col-md-6">
               <h2 class="text-black"><?php echo $data['brand_name'] ?>, <?php echo $data['strength'] ?></h2>
               <p> <strong class="text-success h4">Rs <?php echo $data['price'] ?></strong></p>
+              <?php
+                    if ($data['quatity'] == 0) {
+                      echo "<div class='alert alert-danger'>Out of Stock</div>";
+                    }else{
+                    ?>
               <form action="cart.php" method="POST">
                 <input type="hidden" name="p_id" value="<?php echo $data['id'] ?>">
                 <input type="hidden" name="p_name" value="<?php echo $data['brand_name'] ?>">
@@ -64,17 +69,22 @@ include "doctype.php";
                     <div class="input-group-prepend">
                       <button class="btn btn-outline-success js-btn-minus" type="button">&minus;</button>
                     </div>
-                    <input type="text" name="p_quantity" class="form-control text-center" value="1" placeholder=""
-                      aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    <input type="number" name="p_quantity" class="form-control text-center bg-white" value="1"
+                      aria-label="Example text with button addon" aria-describedby="button-addon1" readonly
+                      maxlength="<?php echo $data['quatity'] ?>" id="quantity">
                     <div class="input-group-append">
                       <button class="btn btn-outline-success js-btn-plus" type="button">&plus;</button>
                     </div>
+                
                   </div>
                 </div>
                 <p><button type="submit" name="addCart"
                     class="buy-now btn btn-sm height-auto px-4 py-3 btn-outline-success">Add
                     To Cart</button></p>
               </form>
+              <?php
+                    }
+                    ?>
             </div>
           </div>
           <div class="row">

@@ -8,8 +8,8 @@ include "doctype.php";
   <div class="site-wrap">
     <?php include "header.php"; ?>
     <script>
-  document.getElementById("Home").classList.remove("active");
-</script>
+      document.getElementById("Home").classList.remove("active");
+    </script>
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
@@ -41,13 +41,13 @@ include "doctype.php";
                     <?php
                     $query = mysqli_query($db, "select * from country");
                     foreach ($query as $coun) {
-                      ?>
+                    ?>
                       <option value="<?= $coun['iso'] ?>" <?php
-                        if ($row['country'] == $coun['iso'])
-                          echo "selected"; ?>>
+                                                          if ($row['country'] == $coun['iso'])
+                                                            echo "selected"; ?>>
                         <?= $coun['name'] ?>
                       </option>
-                      <?php
+                    <?php
                     }
                     ?>
                   </select>
@@ -127,6 +127,26 @@ include "doctype.php";
       $fetchUserName = mysqli_query($db, "SELECT * FROM register WHERE name = '$u_name'");
       $data = mysqli_fetch_assoc($fetchUserName);
       $u_id = $data['id'];
+      function generateTrackingID($length = 16)
+      {
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $numbers = '0123456789';
+        $charactersLength = strlen($characters);
+        $numbersLength = strlen($numbers);
+        $randomString = '';
+
+        // Generate the first 4 characters
+        for ($i = 0; $i < 4; $i++) {
+          $randomString .= $characters[random_int(0, $charactersLength - 1)];
+        }
+
+        // Generate the remaining characters as numbers
+        for ($i = 0; $i < $length - 4; $i++) {
+          $randomString .= $numbers[random_int(0, $numbersLength - 1)];
+        }
+
+        return $randomString;
+      }
       foreach ($_SESSION['cart'] as $key => $value) {
         $p_id = $value['p_id'];
         $p_name = $value['p_name'];
@@ -135,9 +155,14 @@ include "doctype.php";
         $p_generic = $value['p_generic'];
         $p_priscription = $value['p_priscription'];
         $p_img = $value['p_img'];
+        $tracking_id = generateTrackingID();
+        $checktrack=mysqli_query($db,"select * from tracking where tracking_no='$tracking_id'");
+        if(mysqli_num_rows($checktrack)>0){
+          $tracking_id=generateTrackingID();
+        }
 
-
-        $insert = mysqli_query($db, "INSERT INTO orders (u_id,u_name,u_country,u_address,u_phone,delivery_status,p_id,p_name,p_quantity,p_price,generic_name,p_prescription,p_image)VALUES('$u_id','$u_name','$country','$address','$phone','$cod','$p_id','$p_name','$p_quantity','$p_price','$p_generic','$p_prescription','$p_img')");
+        $insert = mysqli_query($db, "INSERT INTO orders (u_id,u_name,u_country,u_address,u_phone,delivery_status,p_id,p_name,p_quantity,p_price,generic_name,p_prescription,p_image,tracking_no)VALUES('$u_id','$u_name','$country','$address','$phone','$cod','$p_id','$p_name','$p_quantity','$p_price','$p_generic','$p_prescription','$p_img','$tracking_id')");
+        mysqli_query($db,"insert into tracking(tracking_no)values('$tracking_id')");
 
         $getOldQuantity = mysqli_query($db, "SELECT * FROM medicine WHERE id = '$p_id'");
         $dataQuantity = mysqli_fetch_assoc($getOldQuantity);
@@ -146,7 +171,6 @@ include "doctype.php";
 
 
         $update = mysqli_query($db, "UPDATE medicine SET quatity = '$updated_quantity' WHERE id = '$p_id'");
-
       }
       unset($_SESSION['cart']);
 
