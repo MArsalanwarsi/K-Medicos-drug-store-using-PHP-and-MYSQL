@@ -234,7 +234,7 @@ session_start();
                           else{
                             $img = $_FILES['img']['name'];
                             $tmp_name = $_FILES['img']['tmp_name'];
-                            $destination = "Category/" . $img;
+                            $destination = "../Category/" . $img;
                             $extension = pathinfo($img, PATHINFO_EXTENSION);
                             if ($extension == "png" or $extension == "jpg" or $extension == "jpeg" or $extension == "jfif" or $extension == "webp") {
                               if (move_uploaded_file($tmp_name, $destination)) {

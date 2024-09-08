@@ -161,21 +161,10 @@ include "doctype.php";
         </form>
       </div>
       <div class="row">
-        <div class="col-md-6">
-          <div class="row mb-5">
-            <div class="col-md-6">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12">
-            </div>
-            <div class="col-md-8 mb-3 mb-md-0">
-            </div>
-            <div class="col-md-4">
-            </div>
-          </div>
+        <div class="col-md-4">
+          <a href="track_order.php" class="btn btn-outline-success">Track Your Order</a>
         </div>
-        <div class="col-md-6 pl-5">
+        <div class="col-md-8 p-5">
           <div class="row justify-content-end">
             <div class="col-md-7">
               <div class="row">
@@ -196,7 +185,7 @@ include "doctype.php";
                   <?php
                   if (isset($_SESSION['name'])) {
                     ?>
-                    <a href="checkout.php" class="btn btn-success btn-lg btn-block">
+                    <a href="checkout.php" class="btn btn-success btn-lg btn-block wrap">
                       Proceed To Checkout
                     </a>
                     <?php

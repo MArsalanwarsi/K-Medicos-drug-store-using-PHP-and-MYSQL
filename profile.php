@@ -285,7 +285,7 @@ register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_
                     }else if($row['status']=='confirmed'){
                       ?>
                       <td>
-                        <p class="text-primary">Confirmed</p>
+                        <p style="color: blue;" class="">Confirmed</p>
                       </td>
                       <?php
                     }else{

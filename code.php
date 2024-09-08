@@ -143,3 +143,11 @@ if (isset($_POST['change_password'])) {
             location.assign('resetPass.php')</script>";
     }
 }
+
+if (isset($_GET["tracking_id"])) {
+    $tracking_id = $_GET["tracking_id"];
+    $query =mysqli_query($db,"UPDATE tracking SET status = 'confirmed' WHERE tracking_no = '$tracking_id'");
+    if ($query) {
+       header("Location: order_confirmed.html");
+    }
+}
