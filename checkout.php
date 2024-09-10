@@ -163,11 +163,13 @@ require 'vendor/autoload.php';
         $p_img = $value['p_img'];
         $tracking_id = generateTrackingID();
         $checktrack = mysqli_query($db, "select * from tracking where tracking_no='$tracking_id'");
-
         if (mysqli_num_rows($checktrack) > 0) {
           $tracking_id = generateTrackingID();
         }
 
+        $date_select = mysqli_query($db, "select * from orders where tracking_no ='$tracking_id'");
+        $date_result = mysqli_fetch_array($date_select);
+        $order_date = $date_result['date'];
         $insert = mysqli_query($db, "INSERT INTO orders (u_id,u_name,u_country,u_address,u_phone,delivery_status,p_id,p_name,p_quantity,p_price,generic_name,p_prescription,p_image,tracking_no)VALUES('$u_id','$u_name','$country','$address','$phone','$cod','$p_id','$p_name','$p_quantity','$p_price','$p_generic','$p_prescription','$p_img','$tracking_id')");
         mysqli_query($db, "insert into tracking(tracking_no)values('$tracking_id')");
 
@@ -178,10 +180,10 @@ require 'vendor/autoload.php';
 
 
         $update = mysqli_query($db, "UPDATE medicine SET quatity = '$updated_quantity' WHERE id = '$p_id'");
-        $email_query=mysqli_query($db,"select * from register where id='$u_id'");
-        $email_data=mysqli_fetch_assoc($email_query);
-        $email=$email_data['email'];
-        $name=$email_data['name'];
+        $email_query = mysqli_query($db, "select * from register where id='$u_id'");
+        $email_data = mysqli_fetch_assoc($email_query);
+        $email = $email_data['email'];
+        $name = $email_data['name'];
         // send mail confirm order
         $confirmOrderUrl = 'http://localhost/Arsalan%20php/Medicine%20Website%20using%20php%20mysql/code.php?tracking_id=' . $tracking_id;
         $mail = new PHPMailer(true);
@@ -293,6 +295,8 @@ require 'vendor/autoload.php';
                 <p>Thank you for your order! We're excited to let you know that your order has been successfully placed.</p>
                 <p>Your Tracking ID is: <b>$tracking_id</b></p>
                 <p>The total amount is: <b>$p_price</b></p>
+                <p>Your order has been placed on <b>$order_date</b></p>
+                <h3>Please Confirm Your Order within 1 Day or Your Order Will be Canceled</h3>
                 <p>To confirm your order and finalize the process, please click the button below:</p>
                 <a href='$confirmOrderUrl' class='cta-button'>Confirm Order</a>
             </div>

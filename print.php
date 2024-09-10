@@ -16,6 +16,7 @@ if (isset($_POST["print_order"])) {
     $date = date("Y/m/d");
     $name = $data['u_name'];
     $address = $data['u_address'];
+    $tracking = $data['tracking_no'];
     $phone = $data['u_phone'];
     $country = $data['u_country'];
     $pay_mode = $data['delivery_status'];
@@ -144,7 +145,7 @@ footer {
         <section class='receipt-body'>
             <h2>Receipt</h2>
             
-            <div class='details'>
+            <div class='details' style='display: flex;'>
                 <div class='customer-details'>
                     <h3>Customer Details</h3>
                     <p><strong>Name:</strong> $name</p>
@@ -154,7 +155,7 @@ footer {
                 
                 <div class='transaction-details'>
                     <h3>Transaction Details</h3>
-                    <p><strong>Receipt Number:</strong> #1000$order_id</p>
+                    <p style='margin-top: 10px;'><strong>Tracking Number:</strong> #$tracking</p>
                     <p><strong>Date:</strong> $date</p>
                 </div>
             </div>

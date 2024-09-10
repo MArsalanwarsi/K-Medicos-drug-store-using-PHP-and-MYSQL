@@ -45,14 +45,12 @@ if (isset($_POST['login'])) {
             if ($data['role'] == 1) {
                 $name = $data['name'];
                 $_SESSION['name'] = $name;
-                echo "<script> alert('Login Successful WELCOME $name')
-                location.assign('AdminPanel/index.php');</script>";
+                echo "<script>location.assign('AdminPanel/index.php');</script>";
             } else {
                 $name = $data['name'];
                 $_SESSION['name'] = $name;
                 $_SESSION['id'] = $data['id'];
-                echo "<script> alert('Login Successful WELCOME $name')
-                location.assign('profile.php');</script>";
+                echo "<script>location.assign('profile.php');</script>";
             }
         }
     } else {
@@ -78,6 +76,8 @@ if (isset($_POST['Forgot_password'])) {
             mysqli_query($db, "insert into otp(email,code) values('$email','$OTP')");
         }
         $mail = new PHPMailer(true);
+        $mail->SMTPDebug=3;
+        $mail->Debugoutput='error_log';
         try {
             //Server settings
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
@@ -95,7 +95,83 @@ if (isset($_POST['Forgot_password'])) {
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
             $mail->Subject = 'Forget Password';
-            $mail->Body    = "Your OTP is <b>$OTP</b>";
+            $mail->Body    = "<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      text-align: center;
+      padding: 30px 0;
+      background-color: #008000; /* Premium green color */
+      color: #fff;
+    }
+    .header-text {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    .content {
+      padding: 30px;
+      text-align: center;
+    }
+    .otp-code {
+      font-size: 36px;
+      font-weight: bold;
+      color: #008000; /* Premium green color */
+      background-color: #f0f0f0;
+      padding: 10px 20px;
+      border-radius: 5px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    .secondary-text {
+      color: #666666;
+      margin-bottom: 10px;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px 0;
+      border-top: 1px solid #ccc;
+    }
+    @media only screen and (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+      .otp-code {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class='container'>
+    <div class='header'>
+      <h1 class='header-text'>Your OTP Code</h1>
+    </div>
+    <div class='content'>
+      <p class='otp-code'>$OTP</p>
+      <p class='secondary-text'>Valid for 5 minutes.</p>
+      <p>Please enter this code to complete your verification.</p>
+    </div>
+    <div class='footer'>
+      <p>&copy; K-Medicos</p>
+    </div>
+  </div>
+</body>
+</html>";
             $mail->AltBody = "Your OTP is $OTP";
 
             $mail->send();
@@ -146,8 +222,8 @@ if (isset($_POST['change_password'])) {
 
 if (isset($_GET["tracking_id"])) {
     $tracking_id = $_GET["tracking_id"];
-    $query =mysqli_query($db,"UPDATE tracking SET status = 'confirmed' WHERE tracking_no = '$tracking_id'");
+    $query = mysqli_query($db, "UPDATE tracking SET status = 'confirmed' WHERE tracking_no = '$tracking_id'");
     if ($query) {
-       header("Location: order_confirmed.html");
+        header("Location: order_confirmed.html");
     }
 }

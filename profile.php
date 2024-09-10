@@ -17,7 +17,7 @@ include "doctype.php";
   document.getElementById("Home").classList.remove("active");
 </script>
 
-    <section style="background-color: #eee;">
+    <section style="background-color: #eee;width: 100%;">
       <div class="container py-2">
         <div class="row">
           <div class="col">
@@ -33,7 +33,7 @@ include "doctype.php";
         include "config.php";
         $user_id = $_SESSION['id'];
         $query = "SELECT register.id,register.name,register.email,register.password,register.date AS register_date,register.address,register.phone_no,register.country,orders.id AS order_id,orders.u_name,orders.u_country,orders.u_address,orders.u_phone,orders.delivery_status,orders.p_id,orders.p_name,
-orders.generic_name,orders.p_quantity,orders.p_price,orders.p_prescription,orders.order_status,tracking_no,orders.date AS order_date FROM
+orders.generic_name,orders.p_quantity,orders.p_price,orders.p_prescription,orders.tracking_no,orders.date AS order_date FROM
 register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_id';";
         $userData = mysqli_query($db, $query);
         $data = mysqli_fetch_assoc($userData)
@@ -230,10 +230,10 @@ register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_
           </div>
         </div>
       </div>
-      <div class="container">
+      <div class="container " style="overflow-x:scroll" >
         <div class="row">
           <div class="col">
-            <table class="table table-hover bg-light">
+            <table class="table table-hover bg-light"  >
               <thead>
                 <tr>
                   <th scope="col">#</th>
@@ -273,25 +273,31 @@ register LEFT JOIN orders ON register.id = orders.u_id WHERE register.id='$user_
                     if($row['status']=='delivered'){
                       ?>
                       <td>
-                        <p class="text-success">Delivered</p>
+                        <p class="text-success" style="text-shadow: 0.5px 0.5px 1px black;">Delivered</p>
                       </td>
                       <?php
                     }else if($row['status']== 'shipped'){
                       ?>
                       <td>
-                        <p class="text-warning">Shipped</p>
+                        <p class="text-warning" style="text-shadow: 0.5px 0.5px 1px black;">Shipped</p>
                       </td>
                       <?php
                     }else if($row['status']=='confirmed'){
                       ?>
                       <td>
-                        <p style="color: blue;" class="">Confirmed</p>
+                        <p  class="text-secondary" style="text-shadow: 0.5px 0.5px 1px black;">Confirmed</p>
+                      </td>
+                      <?php
+                    }else if($row['status']=='packed'){
+                      ?>
+                      <td>
+                        <p style="color: blue;text-shadow: 0.5px 0.5px 1px black;" class="">Packed</p>
                       </td>
                       <?php
                     }else{
                       ?>
                       <td>
-                        <p class="text-danger">Pending</p>
+                        <p class="text-danger" style="text-shadow: 0.5px 0.5px 1px black;">Pending</p>
                       </td>
                       <?php
                     }
