@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2024 at 12:53 AM
+-- Generation Time: Sep 17, 2024 at 12:44 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -396,8 +396,8 @@ CREATE TABLE `medicine` (
 
 INSERT INTO `medicine` (`id`, `dosage`, `brand_name`, `generic_name`, `strength`, `indication`, `adverce_drug_reaction`, `side_effect`, `category`, `company`, `counseling`, `pack_size`, `quatity`, `price`, `prescription`, `img`, `date`) VALUES
 (1, 'Tablet', 'Atarax', 'hydroxyzine', '10mg', 'Anxiety, Insomnia, Urticaria', 'Hemolysis, Arrhythmias,Paracetamol', 'Hypotension', 'Medicine', 'GLAXOSMITHKLINE', 'adminster at bed time', '50', 0, 34, 'Not Required', 'images/11152_1604x1260.webp', '2023-02-02'),
-(3, 'capsule', 'Risek', 'Omeprazole', '40mg', 'gastric', 'Skin rashes, Paresthesia, Arthralgia ', 'Headache, GI upset, ', 'Medicine', 'GETZ PHARMA PAKISTAN (PVT) LTD', 'Take before meal, best if taken before breakfast, Do not crush or chew capsule', '14', 51, 366, 'Not Required', 'images/risek-40mg.jpg', '2023-02-07'),
-(4, 'Tablet', 'Panadol', 'Paracetamol', '500mg', 'For relief of mild to moderate Pain & as antipyretic', 'Cyanosis, hypoglycemia, ', 'Skin eruptions, CNS stimulation', 'Medicine', 'GLAXOSMITHKLINE', 'Take oral form with or without meals.', '10 ', 76, 28, 'Not Required', 'images/panadol.jpeg', '2023-02-07'),
+(3, 'capsule', 'Risek', 'Omeprazole', '40mg', 'gastric', 'Skin rashes, Paresthesia, Arthralgia ', 'Headache, GI upset, ', 'Medicine', 'GETZ PHARMA PAKISTAN (PVT) LTD', 'Take before meal, best if taken before breakfast, Do not crush or chew capsule', '14', 49, 366, 'Not Required', 'images/risek-40mg.jpg', '2023-02-07'),
+(4, 'Tablet', 'Panadol', 'Paracetamol', '500mg', 'For relief of mild to moderate Pain & as antipyretic', 'Cyanosis, hypoglycemia, ', 'Skin eruptions, CNS stimulation', 'Medicine', 'GLAXOSMITHKLINE', 'Take oral form with or without meals.', '10 ', 74, 28, 'Not Required', 'images/panadol.jpeg', '2023-02-07'),
 (5, 'Tablet', 'Ponstan', 'Mefenamic', '250mg', 'Mild', 'Edema, Renal impairment, Raised Liver enzymes', 'GI intolerance, Skin rashes', 'Medicine', 'PFIZER LABORATORIES LTD', 'Immediate after meal,, avois taking with antacids', '10', 200, 30, 'Not Required', 'images/ponstan-tablets-250-mg-600s.webp', '2023-02-07'),
 (6, 'Suspension', 'Brufen', 'Ibuprofen', '100mg/5ml', 'Rheumotoid arthritis, juvenile rheumatoid arthritis,  Mils to moderate pain and fever', 'rarely aseptic menningitis', 'GI upset  or bleeding', 'Medicine', 'ABBOTT LABORATORIES (PAKISTAN) LIMITED', 'Immediate after meal, Take with glass of water', '120ml', 4, 70, 'Not Required', 'images/brufen serup.png', '2023-02-07'),
 (8, 'Tablet', 'Rivotril', 'Clonazepam', '2mg', 'Epilepsy', 'Ataxia, respiratory dipression', 'Fatigue, Muscle weakness, Dizziness', 'Medicine', 'MARTIN DOW PHARMACEUTICALS (PAK) LTD', 'Do not stop taking medicine abruptly, Take oral form with or without meal', '30', 30, 150, 'Required', 'images/rivotrill 2mg.webp', '2023-02-07'),
@@ -427,7 +427,6 @@ CREATE TABLE `orders` (
   `p_quantity` int(11) NOT NULL,
   `p_price` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `order_status` varchar(255) NOT NULL DEFAULT 'Pending',
   `p_prescription` varchar(255) NOT NULL,
   `p_image` varchar(255) DEFAULT NULL,
   `tracking_no` varchar(255) DEFAULT NULL
@@ -437,11 +436,13 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `u_id`, `u_name`, `u_country`, `u_address`, `u_phone`, `delivery_status`, `p_id`, `p_name`, `generic_name`, `p_quantity`, `p_price`, `date`, `order_status`, `p_prescription`, `p_image`, `tracking_no`) VALUES
-(1, 3, 'Arsalan Warsi ', 'PK', 'Gulistan E Johar', '+923150207265', 'cash on delivery', 3, 'Risek', 'Omeprazole', 3, 366, '2024-09-07 23:40:22', 'Pending', '', 'images/risek-40mg.jpg', 'MpUC817972929442'),
-(2, 3, 'Arsalan Warsi ', 'PK', 'Gulistan E Johar', '+923150207265', 'cash on delivery', 3, 'Risek', 'Omeprazole', 3, 366, '2024-09-08 22:10:06', 'Pending', '', 'images/risek-40mg.jpg', 'YHof299274863799'),
-(3, 3, 'Arsalan Warsi ', 'PK', 'Gulistan E Johar', '+923150207265', 'cash on delivery', 4, 'Panadol', 'Paracetamol', 1, 28, '2024-09-08 22:19:10', 'Pending', '', 'images/panadol.jpeg', 'EPnU380486681881'),
-(4, 3, 'Arsalan Warsi ', 'PK', 'Gulistan E Johar', '+923150207265', 'cash on delivery', 4, 'Panadol', 'Paracetamol', 1, 28, '2024-09-08 22:20:21', 'Pending', '', 'images/panadol.jpeg', 'bXwH701084115804');
+INSERT INTO `orders` (`id`, `u_id`, `u_name`, `u_country`, `u_address`, `u_phone`, `delivery_status`, `p_id`, `p_name`, `generic_name`, `p_quantity`, `p_price`, `date`, `p_prescription`, `p_image`, `tracking_no`) VALUES
+(2, 3, 'Arsalan Warsi ', 'PK', 'Gulistan E Johar', '+923150207265', 'cash on delivery', 3, 'Risek', 'Omeprazole', 3, 366, '2024-09-08 22:10:06', '', 'images/risek-40mg.jpg', 'YHof299274863799'),
+(4, 3, 'Arsalan Warsi ', 'PK', 'Gulistan E Johar', '+923150207265', 'cash on delivery', 4, 'Panadol', 'Paracetamol', 1, 28, '2024-09-08 22:20:21', '', 'images/panadol.jpeg', 'bXwH701084115804'),
+(5, 3, 'Arsalan Warsi ', 'PK', 'Gulistan E Johar', '+923150207265', 'cash on delivery', 3, 'Risek', 'Omeprazole', 1, 366, '2024-09-09 20:17:29', '', 'images/risek-40mg.jpg', 'dmpf309149405946'),
+(6, 3, 'Arsalan Warsi ', 'PK', 'Gulistan E Johar', '+923150207265', 'cash on delivery', 3, 'Risek', 'Omeprazole', 1, 366, '2024-09-10 02:44:47', '', 'images/risek-40mg.jpg', 'Uazu587283821653'),
+(7, 3, 'Arsalan Warsi ', 'PK', 'Gulistan E Johar', '+923150207265', 'cash on delivery', 4, 'Panadol', 'Paracetamol', 1, 28, '2024-09-10 02:50:37', '', 'images/panadol.jpeg', 'JXmZ678519491777'),
+(8, 3, 'Arsalan Warsi ', 'PK', 'Gulistan E Johar', '+923150207265', 'cash on delivery', 4, 'Panadol', 'Paracetamol', 1, 28, '2024-09-10 02:54:56', '', 'images/panadol.jpeg', 'ivmh913377624540');
 
 -- --------------------------------------------------------
 
@@ -454,6 +455,13 @@ CREATE TABLE `otp` (
   `email` varchar(255) DEFAULT NULL,
   `code` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `otp`
+--
+
+INSERT INTO `otp` (`id`, `email`, `code`) VALUES
+(4, 'mohammadarsalanwarsi@gmail.com', 8214);
 
 -- --------------------------------------------------------
 
@@ -494,17 +502,19 @@ CREATE TABLE `register` (
   `address` varchar(255) DEFAULT NULL,
   `phone_no` varchar(255) DEFAULT NULL,
   `country` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `register`
 --
 
 INSERT INTO `register` (`id`, `name`, `email`, `password`, `role`, `date`, `address`, `phone_no`, `country`) VALUES
-(0, 'Hassan Shah', 'hassanshah1523@gmail.com', 'hassan123', 2, '2024-09-01 23:40:21', 'Karachi Garden East', '03124232322', 'PK'),
-(1, 'Admin', 'admin@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, '2024-09-04 22:20:25', NULL, NULL, NULL),
-(2, 'Faheem', 'faheem@gmail.com', '123', 2, '2024-08-10 21:17:44', 'Bhitai Colony Near Aman Tower Korangi Crossing Karachi', '03032259008', 'PK'),
-(3, 'Arsalan Warsi ', 'mohammadarsalanwarsi@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 2, '2024-09-04 22:14:31', 'Gulistan E Johar', '+923150207265', 'PK');
+(1, 'Hassan Shah', 'hassanshah1523@gmail.com', 'hassan123', 2, '2024-09-02 06:40:21', 'Karachi Garden East', '03124232322', 'PK'),
+(2, 'Hassan Shah', 'hassanshah1523@gmail.com', 'hassan123', 2, '2024-09-02 06:40:21', 'Karachi Garden East', '03124232322', 'PK'),
+(3, 'Admin', 'admin@gmail.com', 'd033e22ae348aeb5660fc2140aec35850c4da997', 1, '2024-09-05 05:20:25', NULL, NULL, NULL),
+(4, 'Faheem', 'faheem@gmail.com', '123', 2, '2024-08-11 04:17:44', 'Bhitai Colony Near Aman Tower Korangi Crossing Karachi', '03032259008', 'PK'),
+(5, 'Arsalan Warsi ', 'mohammadarsalanwarsi@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 2, '2024-09-05 05:14:31', 'Gulistan E Johar', '+923150207265', 'PK'),
+(6, 'ahmed', 'ahmed@gmail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220', 2, '2024-09-16 22:42:48', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -525,10 +535,12 @@ CREATE TABLE `tracking` (
 --
 
 INSERT INTO `tracking` (`id`, `tracking_no`, `status`, `estim_time`, `rider`) VALUES
-(1, 'MpUC817972929442', 'pending', '15-20 days', NULL),
 (2, 'YHof299274863799', 'confirmed', '15-20 days', NULL),
-(3, 'EPnU380486681881', 'pending', '15-20 days', NULL),
-(4, 'bXwH701084115804', 'confirmed', '15-20 days', NULL);
+(4, 'bXwH701084115804', 'confirmed', '15-20 days', NULL),
+(5, 'dmpf309149405946', 'confirmed', '15-20 days', NULL),
+(6, 'Uazu587283821653', 'pending', '15-20 days', NULL),
+(7, 'JXmZ678519491777', 'pending', '15-20 days', NULL),
+(8, 'ivmh913377624540', 'pending', '15-20 days', NULL);
 
 --
 -- Indexes for dumped tables
@@ -621,19 +633,25 @@ ALTER TABLE `medicine`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `otp`
 --
 ALTER TABLE `otp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `register`
+--
+ALTER TABLE `register`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `tracking`
 --
 ALTER TABLE `tracking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
